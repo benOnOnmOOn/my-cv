@@ -1,0 +1,143 @@
+{
+  "firstName": "Benedykt",
+  "secondName": "Ziobro",
+  "age": 30,
+  "phoneNumber": "+48 788 958 390",
+  "birthDate": "29-03-1990",
+  "education": [
+    {
+      "name": "Rzeszów University of Technology. Łukasiewicza",
+      "degree": "MSc Computer Science",
+      "fromDate": "01-10-2010",
+      "toDate": "01-06-2015"
+    }
+  ],
+  "experience": [
+    {
+      "name": "Mobica Limited",
+      "fromDate": "01-10-2015",
+      "toDate": "01-06-2019",
+      "projects": [
+        {
+          "name": "Room reservation app - internal project",
+          "description": "Learning project for reservation conferences rooms in our office in Rzeszów.",
+          "technologies": [
+            "Java",
+            "Parse",
+            "Android",
+            "Git",
+            "GitLab"
+          ]
+        },
+        {
+          "name": "Maintenance US wireless network operator client app",
+          "description": "In this project I was part of a few different smaller teams working for a US network operator. I worked in maintenance the client app and in creating internal tools, sdk for Q&A team. Writing Unit test for serialization POJO classes. Replacing written by hand POJO classes with generated classes from JSON Schemas.Creating internal application for Q&A team for testing network connection with server. Creating testing automation framework.",
+          "technologies": [
+            "Java",
+            "Android",
+            "Git",
+            "Gerrit",
+            "JUnit",
+            "RxJava",
+            "Realm",
+            "MVP",
+            "Android",
+            "Python",
+            "Appium",
+            "Selenium",
+            "Gherkin"
+          ]
+        },
+        {
+          "name": "App for controlling bluetooth headphones",
+          "description": "For one year I was part of a small team which developed an app for Australian startup. This app allowed for controlling intelligent headphones. We work using SCRUM and use Jira for project tracking.  In this project I was responsible for: \nSelection used technologies and frameworks. \nDesign UI according to received mockups.\nCreating custom views.\nIntegration firebase and amazon services.\nBug fixing and maintenance app.\nEstablishing bluetooth connection with headphones.\nCode review client developers code, added to app.\nIntegrating Google Analytics.\n",
+          "technologies": [
+            "Java",
+            "Android",
+            "Custom view",
+            "Firebase",
+            "Amazon S3",
+            "Amazon Cognito",
+            "Google Analytics",
+            "Bluetooth",
+            "Android Studio",
+            "bitbucket"
+          ]
+        },
+        {
+          "name": "Creating components for international wireless network operator",
+          "description": "For half a year I was part of a team which developed multiple libraries allowing to create apps for multiple countries. We work using SCRUM and we used Jira for project tracking.  In this project I was responsible for: \nCreating UI design for PoC of new component.  \nIntegrating firebase, and deep-links in a sample app.\nBug fixing.\nExtracting part of spanish app to separate component.\nMoving networking from new component to separate component.\nCreate a new sample app using dependency injection (Koin). \nMigrate project from github to github enterprise.\n",
+          "technologies": [
+            "Java",
+            "Kotlin",
+            "Robolectric",
+            "Unit test",
+            "Koin",
+            "Retrofit",
+            "Custom View",
+            "Firebase",
+            "Maven"
+          ]
+        },
+        {
+          "name": "Maintenance apps developed as a part of standalone intelligent screen",
+          "description": "For half a year I was part of a team which developed multiple apps, libraries for an intelligent screen device. We work using SCRUM and we used Phabricator for project tracking.  In this project I was responsible for: \nBug fixing and optimization UI, custom views and custom layouts. \nCreate multiple themes for UI (dark and light).\nImplement UI changes from design\n",
+          "technologies": [
+            "Java",
+            "macOS",
+            "Mercurial",
+            "Phabricator",
+            "Arcanist",
+            "buck"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Billenium SA",
+      "fromDate": "01-06-2019",
+      "projects": [
+        {
+          "name": "Develop app for managing retail network ",
+          "description": "For one year I was part of a team which developed and maintained an app which allowed managing shop networks. Application allowed assigned tasks to employees and verified it with photos , sent marketing material and information. The app was modularized and can be customized for different companies.  In this project I was responsible for: \nCreation of new functionalities and development of the existing ones.\nEstablish a camera support inside the application.\nSupport for push notifications\nOptimization and application maintenance\nApp releasing \nWriting unit tests \nMigration from Dagger to Koin  \n",
+          "technologies": [
+            "Kotlin",
+            "Kotlin Coroutines",
+            "MVVM",
+            "Retrofit",
+            "Dagger",
+            "Koin",
+            "Firebase",
+            "Mockito",
+            "AndroidX"
+          ]
+        },
+        {
+          "name": "Maintenance eyesight testing app",
+          "description": "Now I’m working on a maintenance app which is used in healthcare. I have been working here for 3 months and I’ve responsible for :\nBug fixing \nMigration app from Java to Kotlin \nModernize app \nCode refactor and clean up\nFixing Sonar warnings \n",
+          "technologies": [
+            "Kotlin",
+            "Java",
+            "MVP",
+            "loopj",
+            "Koin",
+            "Firebase",
+            "AndroidX",
+            "Sonar",
+            "Bitbucket"
+          ]
+        }
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "name": "English",
+      "level": "C1"
+    }
+  ],
+  "trainings": [
+    "Enterprise-class information systems",
+    "Object-Oriented Programming in .NET and Java"
+  ]
+}
