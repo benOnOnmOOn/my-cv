@@ -1,5 +1,6 @@
 package benedykt.ziobro.cv.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -27,16 +28,24 @@ class CvViewModel : ViewModel(), KoinComponent {
     private val _cv = MutableLiveData<Cv>()
     val cv: LiveData<Cv> = _cv
 
+    init {
+        fetchData()
+    }
+
     fun fetchData() {
         _isLoading.postValue(true)
         viewModelScope.launch(Dispatchers.IO) {
             val result = cvRepository.getCv()
             _isLoading.postValue(false)
-            if (result is Result.Success) {
-                val data = result.data
-                _cv.postValue(data.toViewModelCv())
-            } else {
-                _isError.postValue(Event(true))
+            when (result) {
+                is Result.Success -> {
+                    val data = result.data
+                    _cv.postValue(data.toViewModelCv())
+                }
+                is Result.Error -> {
+                    Log.e("TAG", "onActivityCreated: ${result.errorMessage}")
+                    _isError.postValue(Event(true))
+                }
             }
         }
     }

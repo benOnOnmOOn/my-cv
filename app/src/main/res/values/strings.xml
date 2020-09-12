@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">My CV</string>
+    <string name="text_loading_data">Loading data...</string>
+    <string name="error_message_when_loading_cv">There was a problem with loading data</string>
 </resources>
