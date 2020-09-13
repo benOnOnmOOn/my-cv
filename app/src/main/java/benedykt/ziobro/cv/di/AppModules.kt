@@ -4,5 +4,6 @@ val appModules = listOf(
     apiModule,
     repositoryModule,
     viewModelModule,
-    fragmentModule
+    fragmentModule,
+    adapterModule
 )

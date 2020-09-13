@@ -2,4 +2,8 @@
     <string name="app_name">My CV</string>
     <string name="text_loading_data">Loading data...</string>
     <string name="error_message_when_loading_cv">There was a problem with loading data</string>
+    <string name="cv_item_header_personal_data">Personal data</string>
+    <string name="cv_item_header_education">Education</string>
+    <string name="cv_item_header_experince">Experience</string>
+    <string name="cv_item_header_language">Language</string>
 </resources>
