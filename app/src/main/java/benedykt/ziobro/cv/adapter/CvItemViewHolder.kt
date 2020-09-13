@@ -24,11 +24,12 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
         private val phoneNumber: TextView = view.findViewById(R.id.phoneNumber)
 
         override fun bind(item: CvItemModel.PersonItem) {
-            firstName.text = item.firstName
-            secondName.text = item.secondName
-            birthDate.text = item.birthDate
-            age.text = item.age.toString()
-            phoneNumber.text = item.phoneNumber
+            val context = firstName.context
+            firstName.text = context.getString(R.string.person_first_name, item.firstName)
+            secondName.text = context.getString(R.string.person_second_name, item.secondName)
+            birthDate.text = context.getString(R.string.person_birth_date, item.birthDate)
+            age.text = context.getString(R.string.person_age, item.age)
+            phoneNumber.text = context.getString(R.string.person_phone_number, item.phoneNumber)
         }
 
     }
@@ -40,10 +41,11 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
         private val toDate: TextView = view.findViewById(R.id.to_date)
 
         override fun bind(item: CvItemModel.EducationItem) {
-            name.text = item.name
-            degree.text = item.degree
-            fromDate.text = item.fromDate
-            toDate.text = item.toDate
+            val context = name.context
+            name.text = context.getString(R.string.education_school_name, item.name)
+            degree.text = context.getString(R.string.education_degree, item.degree)
+            fromDate.text = context.getString(R.string.education_from_date, item.fromDate)
+            toDate.text = context.getString(R.string.education_to_date, item.toDate)
         }
     }
 
@@ -53,9 +55,10 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
         private val toDate: TextView = view.findViewById(R.id.to_date)
 
         override fun bind(item: CvItemModel.ExperienceItem) {
-            name.text = item.name
-            fromDate.text = item.fromDate
-            toDate.text = item.toDate
+            val context = name.context
+            name.text = context.getString(R.string.experience_company_name, item.name)
+            fromDate.text = context.getString(R.string.experience_from_date, item.fromDate)
+            toDate.text = context.getString(R.string.experience_to_date, item.toDate)
         }
     }
 
@@ -65,8 +68,9 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
         private val languageLevel: TextView = itemView.findViewById(R.id.language_level)
 
         override fun bind(item: CvItemModel.LanguageItem) {
-            languageName.text = item.name
-            languageLevel.text = item.level
+            val context = languageName.context
+            languageName.text = context.getString(R.string.language_name, item.name)
+            languageLevel.text = context.getString(R.string.language_level, item.level)
         }
     }
 

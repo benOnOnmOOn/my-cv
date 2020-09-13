@@ -62,7 +62,7 @@ fun Cv.toCvItemModelList(): List<CvItemModel> {
     }
 
     if (experience.isNotEmpty()) {
-        result.add(CvItemModel.HeaderItem(R.string.cv_item_header_experince))
+        result.add(CvItemModel.HeaderItem(R.string.cv_item_header_experience))
         val experienceItems = experience.map { experience ->
             CvItemModel.ExperienceItem(
                 fromDate = experience.fromDate,

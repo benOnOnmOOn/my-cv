@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/margin_small"
-    app:cardBackgroundColor="@android:color/holo_blue_light"
+    app:cardBackgroundColor="@color/orange"
     app:cardCornerRadius="@dimen/corner_radius_small"
     app:cardUseCompatPadding="true">
 
@@ -17,7 +17,6 @@
             android:id="@+id/name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/margin_small"
             android:padding="@dimen/padding_small"
             android:textSize="@dimen/font_normal" />
 
@@ -25,7 +24,6 @@
             android:id="@+id/degree"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_small"
             android:padding="@dimen/padding_small"
             android:textSize="@dimen/font_normal" />
 
@@ -33,7 +31,6 @@
             android:id="@+id/from_date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_small"
             android:padding="@dimen/padding_small"
             android:textSize="@dimen/font_normal" />
 
@@ -41,7 +38,6 @@
             android:id="@+id/to_date"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_margin="@dimen/margin_small"
             android:padding="@dimen/padding_small"
             android:textSize="@dimen/font_normal" />
 

@@ -1,9 +1,27 @@
 <resources>
     <string name="app_name">My CV</string>
-    <string name="text_loading_data">Loading data...</string>
+    <string name="text_loading_data">Loading data…</string>
     <string name="error_message_when_loading_cv">There was a problem with loading data</string>
     <string name="cv_item_header_personal_data">Personal data</string>
     <string name="cv_item_header_education">Education</string>
-    <string name="cv_item_header_experince">Experience</string>
+    <string name="cv_item_header_experience">Experience</string>
     <string name="cv_item_header_language">Language</string>
+
+    <string name="person_first_name">First name: %s</string>
+    <string name="person_second_name">Second name: %s</string>
+    <string name="person_birth_date">Birth date: %s</string>
+    <string name="person_age">Age: %d</string>
+    <string name="person_phone_number">"Phone number: %s</string>
+
+    <string name="education_school_name">School name: %s</string>
+    <string name="education_degree">Received degree: %s</string>
+    <string name="education_from_date">From date: %s</string>
+    <string name="education_to_date">To date: %s</string>
+
+    <string name="experience_company_name">Company name : %s</string>
+    <string name="experience_from_date">From date: %s</string>
+    <string name="experience_to_date">To date: %s</string>
+
+    <string name="language_name">Language name :%s</string>
+    <string name="language_level">Language level : %s</string>
 </resources>
