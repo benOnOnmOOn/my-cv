@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="@dimen/padding_normal"
-    android:layout_margin="@dimen/margin_small"
     android:textSize="@dimen/font_large"
     android:background="@android:color/holo_blue_dark"
     tools:text="Header title" />

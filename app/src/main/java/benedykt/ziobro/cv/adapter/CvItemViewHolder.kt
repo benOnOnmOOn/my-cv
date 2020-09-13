@@ -21,12 +21,14 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
         private val secondName: TextView = view.findViewById(R.id.second_name)
         private val birthDate: TextView = view.findViewById(R.id.birth_date)
         private val age: TextView = view.findViewById(R.id.age)
+        private val phoneNumber: TextView = view.findViewById(R.id.phoneNumber)
 
         override fun bind(item: CvItemModel.PersonItem) {
             firstName.text = item.firstName
             secondName.text = item.secondName
             birthDate.text = item.birthDate
             age.text = item.age.toString()
+            phoneNumber.text = item.phoneNumber
         }
 
     }
@@ -43,7 +45,6 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
             fromDate.text = item.fromDate
             toDate.text = item.toDate
         }
-
     }
 
     class ExperienceHolder(view: View) : CvItemViewHolder<CvItemModel.ExperienceItem>(view) {
@@ -56,7 +57,6 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
             fromDate.text = item.fromDate
             toDate.text = item.toDate
         }
-
     }
 
     class LanguageHolder(view: View) : CvItemViewHolder<CvItemModel.LanguageItem>(view) {
@@ -68,7 +68,6 @@ sealed class CvItemViewHolder<T : CvItemModel>(itemView: View) : RecyclerView.Vi
             languageName.text = item.name
             languageLevel.text = item.level
         }
-
     }
 
     abstract fun bind(item: T)
