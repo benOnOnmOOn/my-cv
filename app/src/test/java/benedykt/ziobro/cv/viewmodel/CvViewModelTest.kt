@@ -2,6 +2,7 @@ package benedykt.ziobro.cv.viewmodel
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import benedykt.ziobro.cv.TestCoroutineRule
 import benedykt.ziobro.cv.di.appModules
 import benedykt.ziobro.cv.repository.CvRepository
@@ -14,19 +15,15 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.TestCoroutineDispatcher
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.setMain
-import org.junit.After
-import org.junit.Before
-import org.junit.Rule
-import org.junit.Test
+import org.junit.*
+import org.junit.runner.RunWith
 import org.koin.core.inject
 import org.koin.test.KoinTest
 import org.koin.test.KoinTestRule
 import org.koin.test.mock.MockProviderRule
 import org.koin.test.mock.declareMock
+import org.mockito.*
 import org.mockito.BDDMockito.given
-import org.mockito.Mock
-import org.mockito.Mockito
-import org.mockito.MockitoAnnotations
 import benedykt.ziobro.cv.repository.model.Cv as RepositoryModelCv
 import benedykt.ziobro.cv.repository.model.Education as RepositoryModelEducation
 import benedykt.ziobro.cv.repository.model.Experience as RepositoryModelExperience
@@ -68,6 +65,9 @@ class CvViewModelTest : KoinTest {
     @Mock
     lateinit var observerError: Observer<Event<Boolean>>
 
+    @Captor
+    private lateinit var argumentCaptor: ArgumentCaptor<Boolean>
+
     @Before
     fun before() {
         MockitoAnnotations.initMocks(this)
@@ -80,13 +80,15 @@ class CvViewModelTest : KoinTest {
                 given(getCv()).willReturn(Result.Success(SUCCES_RESPONSE_CV))
             }
 
-            cvViewModel.fetchData()
             cvViewModel.isLoading.observeForever(observerLoading)
             cvViewModel.cv.observeForever(observerCv)
             cvViewModel.isError.observeForever(observerError)
             delay(500)
-            Mockito.verify(observerLoading).onChanged(true)
-            Mockito.verify(observerLoading).onChanged(false)
+
+            Mockito.verify(observerLoading, Mockito.times(2))
+                .onChanged(argumentCaptor.capture())
+            Assert.assertTrue(argumentCaptor.allValues[0])
+            Assert.assertFalse(argumentCaptor.allValues[1])
             Mockito.verify(observerError).onChanged(Event(false))
             Mockito.verify(observerCv).onChanged(EXPECTED_CV)
         }
@@ -99,7 +101,6 @@ class CvViewModelTest : KoinTest {
                 given(getCv()).willReturn(Result.Error("Sample error"))
             }
 
-            cvViewModel.fetchData()
             cvViewModel.isLoading.observeForever(observerLoading)
             cvViewModel.isError.observeForever(observerError)
             delay(500)

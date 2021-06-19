@@ -1,6 +1,5 @@
 package benedykt.ziobro.cv.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -43,7 +42,7 @@ class CvViewModel : ViewModel(), KoinComponent {
                     _cv.postValue(data.toViewModelCv())
                 }
                 is Result.Error -> {
-                    Log.e("TAG", "onActivityCreated: ${result.errorMessage}")
+//                    Log.e("TAG", "onActivityCreated: ${result.errorMessage}")
                     _isError.postValue(Event(true))
                 }
             }
