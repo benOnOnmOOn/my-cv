@@ -12,19 +12,18 @@ import benedykt.ziobro.cv.viewmodel.mapper.toViewModelCv
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import org.koin.core.KoinComponent
+import org.koin.core.get
 import org.koin.core.inject
 import java.util.concurrent.TimeUnit
 
-const val PAGE_SIZE = 5
+const val PAGE_SIZE = 3
 
 class CvPageViewModel : ViewModel(), KoinComponent {
-
-    private val cvPagingDataSource: CvPagingDataSource by inject()
 
     val cvs: Flow<PagingData<CvItemModel>> =
         Pager(
             config = PagingConfig(pageSize = PAGE_SIZE),
-            pagingSourceFactory = { cvPagingDataSource }
+            pagingSourceFactory = { get<CvPagingDataSource>() }
         ).flow
             .cachedIn(viewModelScope)
 

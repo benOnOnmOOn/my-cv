@@ -14,6 +14,7 @@ import benedykt.ziobro.cv.adapter.CvPageAdapter
 import benedykt.ziobro.cv.adapter.toCvItemModelList
 import benedykt.ziobro.cv.databinding.FragmentCvBinding
 import benedykt.ziobro.cv.databinding.FragmentPageCvBinding
+import benedykt.ziobro.cv.utils.PagingLoadStateAdapter
 import benedykt.ziobro.cv.utils.viewBinding
 import benedykt.ziobro.cv.viewmodel.CvPageViewModel
 import benedykt.ziobro.cv.viewmodel.CvViewModel
@@ -33,8 +34,9 @@ class CvPageFragment : Fragment(R.layout.fragment_page_cv) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.cvListItems.adapter = cvAdapter
-        binding.loadingContainer.bringToFront()
+        binding.cvListItems.adapter = cvAdapter.withLoadStateFooter(
+            footer = PagingLoadStateAdapter(cvAdapter)
+        )
         binding.refreshLayout.setOnRefreshListener {
             cvAdapter.refresh()
         }
@@ -47,17 +49,8 @@ class CvPageFragment : Fragment(R.layout.fragment_page_cv) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             cvAdapter.loadStateFlow.collectLatest { loadStates ->
-                Log.i("Paging", "Loading page $loadStates")
-
-                binding.loadingContainer.isVisible = loadStates.refresh is LoadState.Loading
-
-                if (loadStates.refresh is LoadState.Error)
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.error_message_when_loading_cv),
-                        Toast.LENGTH_SHORT
-                    ).show()
-
+                if (binding.refreshLayout.isRefreshing)
+                    binding.refreshLayout.isRefreshing = loadStates.refresh is LoadState.Loading
             }
         }
 
