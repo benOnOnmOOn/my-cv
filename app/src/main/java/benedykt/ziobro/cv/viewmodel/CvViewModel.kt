@@ -10,6 +10,8 @@ import benedykt.ziobro.cv.utils.Event
 import benedykt.ziobro.cv.viewmodel.mapper.toViewModelCv
 import benedykt.ziobro.cv.viewmodel.model.Cv
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import org.koin.core.KoinComponent
 import org.koin.core.inject
@@ -23,6 +25,9 @@ class CvViewModel : ViewModel(), KoinComponent {
 
     private val _isError = MutableLiveData(Event(false))
     val isError: LiveData<Event<Boolean>> = _isError
+
+    private val _tickFlow = MutableSharedFlow<Boolean>()
+    val tickFlow: SharedFlow<Boolean> = _tickFlow
 
     private val _cv = MutableLiveData<Cv>()
     val cv: LiveData<Cv> = _cv
@@ -43,6 +48,7 @@ class CvViewModel : ViewModel(), KoinComponent {
                 }
                 is Result.Error -> {
                     _isError.postValue(Event(true))
+                    _tickFlow.emit(true)
                 }
             }
         }
