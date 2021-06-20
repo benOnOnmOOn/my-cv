@@ -4,17 +4,9 @@ import androidx.annotation.StringRes
 import benedykt.ziobro.cv.R
 import benedykt.ziobro.cv.viewmodel.model.Cv
 
-const val HEADER_VIEW_TYPE = 1
-const val PERSON_VIEW_TYPE = 2
-const val EDUCATION_VIEW_TYPE = 3
-const val EXPERIENCE_VIEW_TYPE = 4
-const val LANGUAGE_VIEW_TYPE = 5
+sealed class CvItemModel(override val viewType: Int) : ViewTypeProvider {
 
-sealed class CvItemModel(val viewType: Int) {
-
-    class HeaderItem(
-        @StringRes val titleResId: Int
-    ) : CvItemModel(HEADER_VIEW_TYPE)
+    class HeaderItem(@StringRes val titleResId: Int) : CvItemModel(R.layout.item_header)
 
     class PersonItem(
         val age: Int,
@@ -22,25 +14,29 @@ sealed class CvItemModel(val viewType: Int) {
         val firstName: String,
         val phoneNumber: String,
         val secondName: String
-    ) : CvItemModel(PERSON_VIEW_TYPE)
+    ) : CvItemModel(R.layout.item_person)
 
     class EducationItem(
         val degree: String,
         val fromDate: String,
         val name: String,
         val toDate: String
-    ) : CvItemModel(EDUCATION_VIEW_TYPE)
+    ) : CvItemModel(R.layout.item_education)
 
     class ExperienceItem(
         val fromDate: String,
         val name: String,
         val toDate: String
-    ) : CvItemModel(EXPERIENCE_VIEW_TYPE)
+    ) : CvItemModel(R.layout.item_experince)
 
     class LanguageItem(
         val level: String,
         val name: String
-    ) : CvItemModel(LANGUAGE_VIEW_TYPE)
+    ) : CvItemModel(R.layout.item_langugae)
+
+    fun isSame(other: CvItemModel): Boolean {
+        return other.javaClass == this.javaClass
+    }
 }
 
 fun Cv.toCvItemModelList(): List<CvItemModel> {

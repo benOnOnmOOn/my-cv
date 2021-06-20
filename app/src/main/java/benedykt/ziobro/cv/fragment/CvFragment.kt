@@ -26,6 +26,7 @@ class CvFragment : Fragment(R.layout.fragment_cv) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.viewmodel = cvViewModel
+        binding.lifecycleOwner = viewLifecycleOwner
 
         binding.cvListItems.adapter = cvAdapter
 
@@ -42,7 +43,7 @@ class CvFragment : Fragment(R.layout.fragment_cv) {
         }
 
         cvViewModel.cv.observe(viewLifecycleOwner) {
-            cvAdapter.setItems(it.toCvItemModelList())
+            cvAdapter.submitList(it.toCvItemModelList())
         }
     }
 

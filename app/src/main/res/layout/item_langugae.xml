@@ -1,31 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="@dimen/margin_small"
-    app:cardBackgroundColor="@color/orange"
-    app:cardCornerRadius="@dimen/corner_radius_small"
-    app:cardUseCompatPadding="true">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+        <variable
+            name="item"
+            type="benedykt.ziobro.cv.adapter.CvItemModel.LanguageItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_margin="@dimen/margin_small"
+        app:cardBackgroundColor="@color/orange"
+        app:cardCornerRadius="@dimen/corner_radius_small"
+        app:cardUseCompatPadding="true">
 
-        <TextView
-            android:id="@+id/language_name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
-            android:textSize="@dimen/font_normal" />
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/language_level"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/padding_small"
-            android:textSize="@dimen/font_normal" />
+            <TextView
+                android:id="@+id/language_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_small"
+                android:text="@{item.name}"
+                android:textSize="@dimen/font_normal" />
 
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/language_level"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/padding_small"
+                android:text="@{item.level}"
+                android:textSize="@dimen/font_normal" />
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+</layout>
