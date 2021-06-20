@@ -1,10 +1,13 @@
 package benedykt.ziobro.cv.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import benedykt.ziobro.cv.R
 import benedykt.ziobro.cv.adapter.CvAdapter
 import benedykt.ziobro.cv.adapter.CvPageAdapter
@@ -17,6 +20,7 @@ import benedykt.ziobro.cv.viewmodel.CvViewModel
 import kotlinx.coroutines.flow.FlowCollector
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -30,10 +34,30 @@ class CvPageFragment : Fragment(R.layout.fragment_page_cv) {
         super.onViewCreated(view, savedInstanceState)
 
         binding.cvListItems.adapter = cvAdapter
+        binding.loadingContainer.bringToFront()
+        binding.refreshLayout.setOnRefreshListener {
+            cvAdapter.refresh()
+        }
 
         viewLifecycleOwner.lifecycleScope.launchWhenCreated {
             cvViewModel.cvs.collectLatest { pagingData ->
                 cvAdapter.submitData(pagingData)
+            }
+        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            cvAdapter.loadStateFlow.collectLatest { loadStates ->
+                Log.i("Paging", "Loading page $loadStates")
+
+                binding.loadingContainer.isVisible = loadStates.refresh is LoadState.Loading
+
+                if (loadStates.refresh is LoadState.Error)
+                    Toast.makeText(
+                        requireContext(),
+                        getString(R.string.error_message_when_loading_cv),
+                        Toast.LENGTH_SHORT
+                    ).show()
+
             }
         }
 
