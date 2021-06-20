@@ -28,21 +28,9 @@ class CvFragment : Fragment(R.layout.fragment_cv) {
         binding.viewmodel = cvViewModel
 
         binding.cvListItems.adapter = cvAdapter
-//
-//        cvViewModel.isError.observe(viewLifecycleOwner) { error ->
-//            error.getContentIfNotHandled()?.let {
-//                if (it) {
-//                    Toast.makeText(
-//                        requireContext(),
-//                        getString(R.string.error_message_when_loading_cv),
-//                        Toast.LENGTH_SHORT
-//                    ).show()
-//                }
-//            }
-//        }
 
         lifecycleScope.launchWhenStarted {
-            cvViewModel.tickFlow.collect {
+            cvViewModel.isError.collect {
                 if (!it) return@collect
 
                 Toast.makeText(

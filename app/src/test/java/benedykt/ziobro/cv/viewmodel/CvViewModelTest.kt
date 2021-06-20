@@ -62,9 +62,6 @@ class CvViewModelTest : KoinTest {
     @Mock
     lateinit var observerLoading: Observer<Boolean>
 
-    @Mock
-    lateinit var observerError: Observer<Event<Boolean>>
-
     @Captor
     private lateinit var argumentCaptor: ArgumentCaptor<Boolean>
 
@@ -82,14 +79,12 @@ class CvViewModelTest : KoinTest {
 
             cvViewModel.isLoading.observeForever(observerLoading)
             cvViewModel.cv.observeForever(observerCv)
-            cvViewModel.isError.observeForever(observerError)
-            delay(500)
+            delay(1500)
 
             Mockito.verify(observerLoading, Mockito.times(2))
                 .onChanged(argumentCaptor.capture())
             Assert.assertTrue(argumentCaptor.allValues[0])
             Assert.assertFalse(argumentCaptor.allValues[1])
-            Mockito.verify(observerError).onChanged(Event(false))
             Mockito.verify(observerCv).onChanged(EXPECTED_CV)
         }
     }
@@ -102,10 +97,8 @@ class CvViewModelTest : KoinTest {
             }
 
             cvViewModel.isLoading.observeForever(observerLoading)
-            cvViewModel.isError.observeForever(observerError)
             delay(500)
             Mockito.verify(observerLoading).onChanged(false)
-            Mockito.verify(observerError).onChanged(Event(true))
         }
     }
 

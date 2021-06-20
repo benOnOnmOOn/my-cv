@@ -23,11 +23,9 @@ class CvViewModel : ViewModel(), KoinComponent {
     private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean> = _isLoading
 
-    private val _isError = MutableLiveData(Event(false))
-    val isError: LiveData<Event<Boolean>> = _isError
 
-    private val _tickFlow = MutableSharedFlow<Boolean>()
-    val tickFlow: SharedFlow<Boolean> = _tickFlow
+    private val _isError = MutableSharedFlow<Boolean>()
+    val isError: SharedFlow<Boolean> = _isError
 
     private val _cv = MutableLiveData<Cv>()
     val cv: LiveData<Cv> = _cv
@@ -47,8 +45,7 @@ class CvViewModel : ViewModel(), KoinComponent {
                     _cv.postValue(data.toViewModelCv())
                 }
                 is Result.Error -> {
-                    _isError.postValue(Event(true))
-                    _tickFlow.emit(true)
+                    _isError.emit(true)
                 }
             }
         }
