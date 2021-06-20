@@ -31,7 +31,7 @@ class CvViewModel : ViewModel(), KoinComponent {
         fetchData()
     }
 
-    fun fetchData() {
+    private fun fetchData() {
         _isLoading.postValue(true)
         viewModelScope.launch(Dispatchers.IO) {
             val result = cvRepository.getCv()
@@ -42,7 +42,6 @@ class CvViewModel : ViewModel(), KoinComponent {
                     _cv.postValue(data.toViewModelCv())
                 }
                 is Result.Error -> {
-//                    Log.e("TAG", "onActivityCreated: ${result.errorMessage}")
                     _isError.postValue(Event(true))
                 }
             }
