@@ -7,6 +7,7 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.experimental.categories.Category
 import org.koin.test.KoinTest
+import org.koin.test.KoinTestRule
 import org.koin.test.category.CheckModuleTest
 import org.koin.test.check.checkModules
 import org.koin.test.mock.MockProviderRule
@@ -23,6 +24,11 @@ class CheckModulesTest : KoinTest {
 
     @get:Rule
     val rule = InstantTaskExecutorRule()
+
+    @get:Rule
+    val koinTestRule = KoinTestRule.create {
+        modules(appModules)
+    }
 
     @get:Rule
     val testCoroutineRule = TestCoroutineRule()
