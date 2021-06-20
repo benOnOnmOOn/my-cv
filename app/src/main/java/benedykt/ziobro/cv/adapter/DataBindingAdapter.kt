@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.databinding.library.baseAdapters.BR
+import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -36,5 +37,21 @@ class DataBindingViewHolder<T>(val binding: ViewDataBinding) :
         binding.setVariable(BR.item, item)
         binding.executePendingBindings()
     }
+}
+abstract class DataBindingPagingAdapter<T : ViewTypeProvider>(
+    diffCallback: DiffUtil.ItemCallback<T>
+) : PagingDataAdapter<T, DataBindingViewHolder<T>>(diffCallback) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataBindingViewHolder<T> {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding =
+            DataBindingUtil.inflate<ViewDataBinding>(layoutInflater, viewType, parent, false)
+        return DataBindingViewHolder(binding)
+    }
+
+    override fun onBindViewHolder(holder: DataBindingViewHolder<T>, position: Int) {
+        getItem(position)?.let { holder.bind(it) }
+    }
+
+    override fun getItemViewType(position: Int): Int = getItem(position)!!.viewType
 }
 

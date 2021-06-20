@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import benedykt.ziobro.cv.extension.replace
 import benedykt.ziobro.cv.fragment.CvFragment
+import benedykt.ziobro.cv.fragment.CvPageFragment
 import org.koin.androidx.fragment.android.setupKoinFragmentFactory
 
 class MainActivity : AppCompatActivity() {
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
 
         supportFragmentManager
             .beginTransaction()
-            .replace<CvFragment>(R.id.fragment_container)
+            .replace<CvPageFragment>(R.id.fragment_container)
             .commit()
     }
 
