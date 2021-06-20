@@ -13,7 +13,6 @@ import benedykt.ziobro.cv.adapter.CvAdapter
 import benedykt.ziobro.cv.adapter.toCvItemModelList
 import benedykt.ziobro.cv.databinding.FragmentCvBinding
 import benedykt.ziobro.cv.viewmodel.CvViewModel
-import kotlinx.android.synthetic.main.fragment_cv.*
 import org.koin.android.ext.android.inject
 
 class CvFragment : Fragment() {
@@ -46,7 +45,7 @@ class CvFragment : Fragment() {
 
         binding.viewmodel = cvViewModel
 
-        cv_list_items.let {
+        binding.cvListItems.let {
             it.layoutManager = LinearLayoutManager(activity)
             it.adapter = cvAdapter
         }
